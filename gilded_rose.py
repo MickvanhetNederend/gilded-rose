@@ -21,7 +21,7 @@ class GildedRose(object):
         self.inventory = [self._get_item_category(i) for i in items]
 
     def __repr__(self):
-        return "\n".join(str(i) + " " + str(type(i)) for i in self.inventory)
+        return "\n".join(str(i) for i in self.inventory)
 
     def _get_item_category(self, item):
         # Take the right subclass of every item
