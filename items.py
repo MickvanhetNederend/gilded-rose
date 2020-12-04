@@ -22,6 +22,18 @@ class GeneralItem(Item):
         )
         self.sell_in = self.sell_in - 1
 
+class ConjuredItem(Item):
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality)
+        self.min_quality = 0
+        self.max_quality = 50
+
+    def update(self):
+        decrement = 2 if self.sell_in > 0 else 4
+        self.quality = _confine(
+            self.quality - decrement, self.min_quality, self.max_quality
+        )
+        self.sell_in = self.sell_in - 1
 
 class CheeseItem(Item):
     def __init__(self, name, sell_in, quality):

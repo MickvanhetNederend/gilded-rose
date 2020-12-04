@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-from items import GeneralItem, CheeseItem, BackstageItem, LegendaryItem
+from items import GeneralItem, CheeseItem, BackstageItem, LegendaryItem, ConjuredItem
 
 
 SUBCLASS_MAPPING = {
     "Aged Brie": CheeseItem,
     "Backstage passes to a TAFKAL80ETC concert": BackstageItem,
     "Sulfuras, Hand of Ragnaros": LegendaryItem,
+    "Conjured Mana Cake": ConjuredItem,
 }
 
 
