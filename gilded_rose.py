@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
-from items import NonLegendaryItem, ConjuredItem, CheeseItem, BackstageItem, LegendaryItem
+from items import (
+    NonLegendaryItem,
+    ConjuredItem,
+    CheeseItem,
+    BackstageItem,
+    LegendaryItem,
+)
 
 
 SUBCLASS_MAPPING = {
