@@ -17,37 +17,31 @@ class NonLegendaryItem(Item):
         quality,
         min_quality=0,
         max_quality=50,
-        fresh_delta=1,
+        delta_fresh=-1,
         rot_factor=2,
-        decreases_over_time=True,
     ):
         super().__init__(name, sell_in, quality)
         self.min_quality = min_quality
         self.max_quality = max_quality
-        self.fresh_delta = fresh_delta
+        self.delta_fresh = delta_fresh
         self.rot_factor = rot_factor
-        self.sign = 1 if decreases_over_time else -1
 
     def update(self):
         # The delta is multiplied by the "rot_factor" when the sell_in moment has expired
-        if self.sell_in > 0:
-            delta = self.fresh_delta * self.sign
-        else:
-            delta = self.fresh_delta * self.rot_factor * self.sign
-
-        quality = self.quality - delta
+        delta = self.delta_fresh if self.sell_in > 0 else self.delta_fresh * self.rot_factor
+        quality = self.quality + delta
         self.quality = _confine(quality, self.min_quality, self.max_quality)
         self.sell_in = self.sell_in - 1
 
 
 class ConjuredItem(NonLegendaryItem):
     def __init__(self, name, sell_in, quality):
-        super().__init__(name, sell_in, quality, fresh_delta=2)
+        super().__init__(name, sell_in, quality, delta_fresh=-2)
 
 
 class CheeseItem(NonLegendaryItem):
     def __init__(self, name, sell_in, quality):
-        super().__init__(name, sell_in, quality, decreases_over_time=False)
+        super().__init__(name, sell_in, quality, delta_fresh=+1)
 
 
 class BackstageItem(NonLegendaryItem):
@@ -60,10 +54,9 @@ class BackstageItem(NonLegendaryItem):
             self.quality = 0
         else:
             # Tickets get more valuable the closer to the concert date
-            increment = 1 if self.sell_in > 10 else 2 if self.sell_in > 5 else 3
-            self.quality = _confine(
-                self.quality + increment, self.min_quality, self.max_quality
-            )
+            delta = 1 if self.sell_in > 10 else 2 if self.sell_in > 5 else 3
+            quality = self.quality + delta
+            self.quality = _confine(quality, self.min_quality, self.max_quality)
         self.sell_in = self.sell_in - 1
 
 
