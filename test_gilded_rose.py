@@ -6,7 +6,7 @@ from items import Item
 
 
 class GildedRoseTest(unittest.TestCase):
-    def test_general_item(self):
+    def test_nonlegendary_item(self):
         items_input = [
             Item(name="+5 Dexterity Vest", sell_in=10, quality=10),
             Item(name="+5 Dexterity Vest", sell_in=1, quality=10),
