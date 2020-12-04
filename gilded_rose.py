@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from items import GeneralItem, CheeseItem, BackstageItem, LegendaryItem, ConjuredItem
+from items import NonLegendaryItem, ConjuredItem, CheeseItem, BackstageItem, LegendaryItem
 
 
 SUBCLASS_MAPPING = {
@@ -19,7 +19,7 @@ class GildedRose(object):
 
     def _get_item_category(self, item):
         # Take the right subclass of every item
-        subclass = SUBCLASS_MAPPING.get(item.name, GeneralItem)
+        subclass = SUBCLASS_MAPPING.get(item.name, NonLegendaryItem)
         return subclass(item.name, item.sell_in, item.quality)
 
     def update_quality(self):
