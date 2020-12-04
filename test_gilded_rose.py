@@ -27,7 +27,7 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self._assert_item_lists_equality(gilded_rose.inventory, items_expected)
 
-    def test_aged_brie(self):
+    def test_cheese_item(self):
         items_input = [
             Item(name="Aged Brie", sell_in=10, quality=0),
             Item(name="Aged Brie", sell_in=0, quality=0),
@@ -48,7 +48,7 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self._assert_item_lists_equality(gilded_rose.inventory, items_expected)
 
-    def test_backstage_pass(self):
+    def test_backstage_item(self):
         items_input = [
             Item(
                 name="Backstage passes to a TAFKAL80ETC concert", sell_in=20, quality=10
@@ -89,7 +89,7 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self._assert_item_lists_equality(gilded_rose.inventory, items_expected)
 
-    def test_sulfuras(self):
+    def test_legendary_item(self):
         items_input = [
             Item(name="Sulfuras, Hand of Ragnaros", sell_in=10, quality=80),
             Item(name="Sulfuras, Hand of Ragnaros", sell_in=-10, quality=80),
