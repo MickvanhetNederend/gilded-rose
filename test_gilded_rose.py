@@ -104,6 +104,23 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self._assert_item_lists_equality(gilded_rose.inventory, items_expected)
 
+    def test_conjured_item(self):
+        items_input = [
+            Item(name="Conjured Mana Cake", sell_in=1, quality=10),
+            Item(name="Conjured Mana Cake", sell_in=-1, quality=10),
+            Item(name="Conjured Mana Cake", sell_in=1, quality=1),
+        ]
+
+        items_expected = [
+            Item(name="Conjured Mana Cake", sell_in=0, quality=8),
+            Item(name="Conjured Mana Cake", sell_in=-2, quality=6),
+            Item(name="Conjured Mana Cake", sell_in=0, quality=0),
+        ]
+
+        gilded_rose = GildedRose(items_input)
+        gilded_rose.update_quality()
+        self._assert_item_lists_equality(gilded_rose.inventory, items_expected)
+
     def _assert_item_lists_equality(self, list1, list2):
         [
             self._assert_items_equality(item, list2[ind])
